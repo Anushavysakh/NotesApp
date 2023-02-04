@@ -12,7 +12,7 @@ class Settings extends StatelessWidget {
         child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+            children: const [
               Icon(Icons.settings,color: Colors.black),
               SizedBox(
                 width: 10,

@@ -25,6 +25,14 @@ class _ViewNoteState extends State<ViewNote> {
   GlobalKey<FormState> key = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    title = widget.note.title;
+    des = widget.note.description;
+  }
+
+  @override
   Widget build(BuildContext context) {
     title = widget.note.title;
     des = widget.note.description;
@@ -40,23 +48,23 @@ class _ViewNoteState extends State<ViewNote> {
             showModalBottomSheet(context: context, builder: (context) {
               return Remainder();
             },);
-          }, child: Icon(Icons.notification_add)),
+          }, child: const Icon(Icons.notification_add)),
           ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
 
-                setState(() {
-                  FirebaseNoteService.instance.saveNote(widget.note);
+                 await FirebaseNoteService.instance.saveNote(widget.note);
                   title = widget.note.title;
                   des = widget.note.description;
-                });
+
                 Navigator.of(context).pop();
               },
               child: const Icon(Icons.save_rounded)),
           ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 {
-                  setState(() {
-                    FirebaseNoteService.instance.delete(widget.note.id);
+                  await FirebaseNoteService.instance.delete(widget.note.id);
+
+                setState(() {
                   });
                   Navigator.pop(context);
                 }

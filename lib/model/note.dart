@@ -5,9 +5,9 @@ class Note {
   var id = const Uuid().v4();
   String? title;
   String? description;
-  //DateTime dateTime;
+ // Timestamp? created;
 
-  Note(this.id, this.title, this.description,);
+  Note(this.id, this.title, this.description);
 
   static Note fromDocumentsSnapshot(
       QueryDocumentSnapshot<Map<String, dynamic>> e) {

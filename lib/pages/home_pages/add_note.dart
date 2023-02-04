@@ -1,12 +1,6 @@
-import 'dart:developer';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:notes_app/pages/home_pages/sidebar_menu_items/remainders.dart';
 import 'package:notes_app/services/firebase_note_service.dart';
-import 'package:uuid/uuid.dart';
 
 class AddNewNote extends StatefulWidget {
   const AddNewNote({super.key});
@@ -22,11 +16,11 @@ class _AddNewNoteState extends State<AddNewNote> {
   bool isRemainder = false;
   DateTime? _alarmTime;
 
-
   void add() async {
-    await FirebaseNoteService.addNote(titles!, des!);
-    setState(() {});
-    Navigator.pop(context);
+
+      await FirebaseNoteService.addNote(titles!, des!);
+      Navigator.pop(context);
+
   }
 
   @override
@@ -83,11 +77,9 @@ class _AddNewNoteState extends State<AddNewNote> {
                   des = val;
                 },
               ),
-
             ),
           ),
-          Container(
-          )
+          Container()
         ]),
       ),
     );

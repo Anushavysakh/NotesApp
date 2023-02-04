@@ -16,6 +16,7 @@ class NoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //print(note.created.toString());
     return Card(
         margin: const EdgeInsets.all(10),
         shape: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
@@ -43,7 +44,9 @@ class NoteCard extends StatelessWidget {
                 ),
               ),
               // data!['title'],
-            )
+            ),
+
+          //    Text(note.created.toString())
           ]),
         ));
   }

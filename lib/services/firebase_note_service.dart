@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:notes_app/pages/home_pages/sidebar_menu_items/notes.dart';
@@ -22,8 +24,17 @@ class FirebaseNoteService {
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .collection('notes');
 
-    var data = {'title': title, 'contents': description, 'id': id};
-    ref.add(data);
+    DocumentReference documentReference = ref.doc();
+    await ref.doc(documentReference.id).set({
+      'id' : documentReference.id,
+      'title' : title,
+      'contents' : description
+    });
+    print(documentReference);
+    return documentReference.id;
+
+    // var data = {'title': title, 'contents': description, 'id': id};
+    // ref.add(data);
   }
 
   Future<void> delete(String id) async {
@@ -45,7 +56,7 @@ class FirebaseNoteService {
         .collection('notes');
     final snapshot = await reference.where('id', isEqualTo: note.id).get();
     for (var doc in snapshot.docs) {
-      var update = await doc.reference.update(
+        doc.reference.update(
           {'title': note.title, 'contents': note.description});
     }
   }
@@ -56,6 +67,7 @@ class FirebaseNoteService {
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .collection("notes");
     final snapshot = await ref.limit(5).get();
+    log(snapshot.toString());
     if (snapshot.docs.isNotEmpty) {
       lastNote = snapshot.docs.last;
     }

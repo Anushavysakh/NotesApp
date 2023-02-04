@@ -18,8 +18,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
-  final background = "assets/background.jpg";
-  final googleSignIn = "assets/img.png";
+  final background = "assets/background1.jpg";
+  final googleSignIn = "assets/google.png";
 
 
 
@@ -37,9 +37,8 @@ class _LoginPageState extends State<LoginPage> {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(background), fit: BoxFit.cover),
+            decoration: BoxDecoration(color: Colors.indigo.shade200,
+
             ),
           ),
           Container(
@@ -59,7 +58,8 @@ class _LoginPageState extends State<LoginPage> {
                     margin: const EdgeInsets.only(left: 35, right: 35),
                     child: Column(
                       children: [
-                        buildTextFieldEmail(_email),
+                       // buildTextFieldEmail(_email),
+                        buildTextFormFieldEmail(_email),
                         const SizedBox(
                           height: 30,
                         ),
@@ -88,6 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                         ElevatedButton(
                             onPressed: () {
                               AuthService.instance.signIn(_email.text.trim(), _password.text.trim());
+
                             },
                             child: const Text("Login")),
                         const SizedBox(
@@ -107,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                                   signInWithGoogle(context);
                                 },
                                 child: Row(
-                                  children: const [
+                                  children:  const [
                                     Text(
                                       "Login with Google",
                                       style: TextStyle(
@@ -116,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                                     ),SizedBox(
                                       width: 10.0,
                                     ),
-                                    Image(image: AssetImage("assets/google.png"))
+                                  //  Image(image: AssetImage(googleSignIn),height: 2,width: 2,)
                                   ],
                                 )),
                           )
