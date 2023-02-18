@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/pages/home_pages/sidebar_menu_items/remainders.dart';
 import 'package:notes_app/services/firebase_note_service.dart';
+import 'package:notes_app/services/repository/repository.dart';
 
 class AddNewNote extends StatefulWidget {
   const AddNewNote({super.key});
@@ -17,12 +18,9 @@ class _AddNewNoteState extends State<AddNewNote> {
   DateTime? _alarmTime;
 
   void add() async {
-
-      await FirebaseNoteService.addNote(titles!, des!);
-      Navigator.pop(context);
-
+     await FirebaseNoteService.addNote(titles!, des!);
+    Navigator.pop(context);
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,41 +1,41 @@
+
+
 import 'package:flutter/material.dart';
 
 import '../validation/my_validator.dart';
 
 InputDecoration buildInputDecoration(String hintText) {
-  return InputDecoration(
-      fillColor: Colors.grey.shade100,
+  return InputDecoration(hintStyle: TextStyle(color: Colors.grey.shade400),
+      fillColor: Colors.white,
       filled: true,
       hintText: hintText,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
       ));
 }
+
 TextField buildTextFieldUserName(userName) {
   return TextField(
     style: const TextStyle(color: Colors.black),
-    keyboardType: TextInputType.name,
+    keyboardType: TextInputType.name ,
     controller: userName,
     decoration: buildInputDecoration('User Name'),
-  );
-}
-TextFormField buildTextFormFieldEmail(_email){
-  return TextFormField(
-    style: const TextStyle(color: Colors.black),
-    keyboardType: TextInputType.emailAddress,
-    controller: _email,
-    decoration: buildInputDecoration('Email'),
-    validator: (_email) { validateEmail(_email);},
+
   );
 }
 
+
+
+
 TextField buildTextFieldEmail(_email) {
   return TextField(
+
     onSubmitted: validateEmail(_email),
     style: const TextStyle(color: Colors.black),
     keyboardType: TextInputType.emailAddress,
     controller: _email,
-    decoration: buildInputDecoration('Email'),
+
+   decoration: buildInputDecoration('Email address'),
   );
 }
 
@@ -45,6 +45,7 @@ validateEmail(email) {
 
 TextField buildTextFieldPassword(_password) {
   return TextField(
+    style: TextStyle(color: Colors.black),
     onSubmitted: validatePassword(_password),
     controller: _password,
     keyboardType: TextInputType.visiblePassword,
@@ -65,3 +66,6 @@ TextField buildTextFieldConfirmPassword(_confirmpassword) {
     decoration: buildInputDecoration('Re-enter password'),
   );
 }
+
+
+

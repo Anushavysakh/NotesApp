@@ -71,6 +71,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     updateStatus();
+
     super.initState();
     initialFetch();
     controller.addListener(() {
@@ -113,11 +114,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+
         endDrawerEnableOpenDragGesture: true,
         key: _drawKey,
-        drawer: const SideBarMenu(),
-        body: Column(children: [
+        drawer:  SideBarMenu(),
+        body: Column(
+            children: [
           Expanded(
             flex: 1,
             child: Container(
@@ -202,6 +204,9 @@ class _HomePageState extends State<HomePage> {
                               .then((value) {
                             setState(() {});
                           });
+                        },
+                        onLongPress: (){
+
                         },
                         child: NoteCard(
                           bg: bg,
